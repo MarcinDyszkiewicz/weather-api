@@ -4,17 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Weather extends Model
+class Forecast extends Model
 {
     protected $guarded = ['id'];
     protected $fillable = [
         'city_id',
-        'local_datetime',
+        'date',
         'precip_type',
         'precip_probability',
         'precip_intensity',
-        'temperature',
-        'apparent_temperature',
+        'temperature_min',
+        'temperature_max',
+        'apparent_temperature_min',
+        'apparent_temperature_max',
         'humidity',
         'pressure',
         'wind_speed',
@@ -22,5 +24,7 @@ class Weather extends Model
         'cloud_cover',
         'uv_index',
         'visibility',
+        'sunrise_time',
+        'sunset_time',
     ];
 }

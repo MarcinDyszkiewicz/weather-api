@@ -16,6 +16,17 @@ class CreateCitiesTable extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->integer('country_id');
+            $table->text('name');
+            $table->decimal('latitude', 8, 6);
+            $table->decimal('longitude', 9, 6);
+            $table->text('timezone');
+            $table->smallInteger('timezone_offset');
+
+            $table->foreign('country_id')
+                ->references('id')
+                ->on('countries')
+                ->onDelete('cascade');
         });
     }
 

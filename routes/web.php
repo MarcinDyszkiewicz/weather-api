@@ -11,10 +11,12 @@
 |
 */
 
+use App\Services\WeatherService;
 use Illuminate\Support\Facades\Route;
 
 /** @var Route $router */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+
+    return response()->json('Hello');
 });
