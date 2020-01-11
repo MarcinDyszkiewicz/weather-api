@@ -20,3 +20,6 @@ $router->get('/', function () use ($router) {
 
     return response()->json('Hello');
 });
+
+$router->get('city', 'CityController@show');
+$router->get('city/{$city}/weather', 'CityController@listWeathers');

@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Models\City;
-use App\ReadModels\CreatedWeatherAndForecasts;
 use App\Services\WeatherService;
 use Carbon\Carbon;
 use Illuminate\Console\Command;

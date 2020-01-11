@@ -23,7 +23,7 @@ class CitiesTableSeeder extends Seeder
     {
         $csvFiles = [
             $citiesListCsv = file(app()->basePath() . '/cities-list.csv'),
-//            $myCitiesListCsv = file(app()->basePath() . '/my-cities-list.csv'),
+            $myCitiesListCsv = file(app()->basePath() . '/my-cities-list.csv'),
         ];
 
         foreach ($csvFiles as $csvFile) {
