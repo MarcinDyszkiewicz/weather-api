@@ -25,6 +25,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command(CreateWeather::class)->hourly();
+        $schedule->command(CreateWeather::class)->hourlyAt(2);
     }
 }

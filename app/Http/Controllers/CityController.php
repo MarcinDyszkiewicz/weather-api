@@ -22,15 +22,19 @@ class CityController extends Controller
         return response()->json($city);
     }
 
-    public function listWeathers(City $city)
+    public function listWeathers(int $cityId)
     {
+        $city = City::findOrFail($cityId);
+
         $weathers = $city->weathers()->latest()->limit(14)->get();
 
         return response()->json($weathers);
     }
 
-    public function listForecasts(City $city)
+    public function listForecasts(int $cityId)
     {
+        $city = City::findOrFail($cityId);
+
         $forecasts = $city->forecasts()->latest()->limit(7)->get();
 
         return response()->json($forecasts);

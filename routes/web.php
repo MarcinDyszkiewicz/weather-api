@@ -22,4 +22,5 @@ $router->get('/', function () use ($router) {
 });
 
 $router->get('city', 'CityController@show');
-$router->get('city/{$city}/weather', 'CityController@listWeathers');
+$router->get('city/{cityId}/weather', 'CityController@listWeathers');
+$router->get('city/{cityId}/forecast', 'CityController@listForecasts');
