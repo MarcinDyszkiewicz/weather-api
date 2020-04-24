@@ -26,7 +26,7 @@ class CityController extends Controller
     {
         $city = City::findOrFail($cityId);
 
-        $weathers = $city->weathers()->latest()->limit(14)->get();
+        $weathers = $city->twoWeeksWeathers();
 
         return response()->json($weathers);
     }
@@ -35,7 +35,7 @@ class CityController extends Controller
     {
         $city = City::findOrFail($cityId);
 
-        $forecasts = $city->forecasts()->latest()->limit(7)->get();
+        $forecasts = $city->weekForecasts();
 
         return response()->json($forecasts);
     }

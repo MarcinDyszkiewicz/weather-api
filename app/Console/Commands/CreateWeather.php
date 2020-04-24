@@ -78,6 +78,7 @@ class CreateWeather extends Command
                     'e' => $e
                 ]
             );
+             //add job
         }
     }
 

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -32,10 +34,14 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\City whereTimezone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\City whereTimezoneOffset($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\City whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\City findOrFail($value)
  * @mixin \Eloquent
  */
 class City extends Model
 {
+    const ONE_WEEK = 7;
+    const TWO_WEEKS = 14;
+
     protected $guarded = ['id'];
 
     /**
@@ -52,5 +58,39 @@ class City extends Model
     public function forecasts()
     {
         return $this->hasMany(Forecast::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function twoWeeksWeathers()
+    {
+        return $this->weathers()->latest()->limit(self::TWO_WEEKS)->get();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function weekForecasts()
+    {
+        return $this->forecasts()->latest()->limit(self::ONE_WEEK)->get();
+    }
+
+    /**
+     * @param int $days
+     * @return Collection
+     */
+    public function getWeatherForDays(int $days): Collection
+    {
+        return $this->weathers()->latest()->limit($days)->get();
+    }
+
+    /**
+     * @param int $days
+     * @return Collection
+     */
+    public function getHistoryForecasts(int $days): Collection
+    {
+        return $this->forecasts()->where('date', '<', Carbon::today())->latest()->limit($days)->get();
     }
 }
